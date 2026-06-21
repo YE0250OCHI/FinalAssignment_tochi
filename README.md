@@ -74,9 +74,8 @@ VALUES
   '2026-06-24',
   N'進行中'
 );
-
-
 ```
+
 
 ## タスク管理システム（ASP.NET）
 
@@ -88,7 +87,7 @@ VALUES
   - Dapper : DB操作拡張機能
   - Microsoft.Data.SqlClient : SQL Server
 - 一覧画面（Index）
-  - <table>タグを使って、全件表示を行うこと
+  - `<table>`タグを使って、全件表示を行うこと
   - 担当者名、ステータス名によるフィルタリング機能を設けること
   - フィルタリング処理は、LINQで行うこと
 - 編集画面（Edit）
