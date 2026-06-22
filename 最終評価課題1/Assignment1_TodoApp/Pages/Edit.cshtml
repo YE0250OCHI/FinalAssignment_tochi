@@ -1,0 +1,77 @@
+﻿@page "{id}"
+@model EditModel
+@{
+    ViewData["Title"] = "編集画面";
+}
+
+<div class="container">
+    <!-- タイトル -->
+    <div class="row mb-3">
+        <div class="text-start">
+            <h1 class="">タスク編集画面</h1>
+        </div>
+    </div>
+
+    <!-- 入力欄 -->
+    <form method="post">
+        <!-- タスクID表示 -->
+        <div class="row mb-3">
+            <div class="col-12 d-flex">
+                <label class="col-2 form-label">タスクID</label>
+                <div class="col form-control bg-secondary-subtle">@Model.TaskId</div>
+            </div>
+        </div>
+
+        <!-- タスク名変更TB -->
+        <div class="row mb-3">
+            <div class="col-12 d-flex">
+                <label class="col-2 form-label">タスク名</label>
+                <div class="col">
+                    <input class="col form-control" type="text" asp-for="@Model.TaskName" />
+                    <span asp-validation-for="TaskName" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    
+        <!-- 担当者変更TB -->
+        <div class="row mb-3">
+            <div class="col-12 d-flex">
+                <label class="col-2 form-label">担当者名</label>
+                <div class="col">
+                    <input class="col form-control" type="text" asp-for="@Model.Assignee" />
+                    <span asp-validation-for="Assignee" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 期日変更BOX -->
+        <div class="row mb-3">
+            <div class="col-12 d-flex">
+                <label class="col-2 form-label">期日</label>
+                <div class="col">
+                    <input class="col form-control" type="date" asp-for="@Model.DueDate" />
+                    <span asp-validation-for="DueDate" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    
+        <!-- 進捗変更DL -->
+        <div class="row mb-3">
+            <div class="col-12 d-flex">
+                <label class="col-2 form-label">進捗状態</label>
+                <div class="col">
+                    <select class="col form-select" asp-for="@Model.SelectedStatus" asp-items="@Model.ListItem"></select>
+                </div>
+            </div>
+        </div>
+
+        <!-- ボタン類 -->
+        <div class="row mb-3">
+            <button class="col-6 btn btn-primary" type="submit" asp-page-handler="Update">更新</button>
+            <input type="hidden" asp-for="TaskId" />
+            <a class="col btn btn-secondary" asp-page="/Index">戻る</a>
+        </div>
+
+    </form>       
+
+</div>
