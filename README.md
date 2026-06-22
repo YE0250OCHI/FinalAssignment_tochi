@@ -14,11 +14,11 @@ GO
 -- テーブル作成
 CREATE TABLE TASKS
 (
-  TASK_ID INT PRIMARY KEY IDENTITY(1,1),
+  TASK_ID INT IDENTITY(1,1) PRIMARY KEY,
   TASK_NAME NVARCHAR(100) NOT NULL,
   ASSIGNEE NVARCHAR(50) NOT NULL,
   DUE_DATE DATE NOT NULL,
-  STATUS NVARCHAR(20) NOT NULL,
+  STATUS NVARCHAR(20) NOT NULL CHECK (STATUS IN (N'未着手', N'進行中', N'完了')),
   CREATE_DATETIME DATETIME NOT NULL DEFAULT GETDATE(),
   UPDATE_DATETIME DATETIME NOT NULL DEFAULT GETDATE()
 );
@@ -90,6 +90,7 @@ VALUES
   - `<table>`タグを使って、全件表示を行うこと
   - 担当者名、ステータス名によるフィルタリング機能を設けること
   - フィルタリング処理は、LINQで行うこと
+  - 編集画面と相互遷移可能であること
 - 編集画面（Edit）
   - 一覧で選択されたタスクの更新が行えること
   - 主キーは変更不可とする
