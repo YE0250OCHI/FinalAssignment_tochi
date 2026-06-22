@@ -51,11 +51,13 @@ namespace TaskAuditApp
             List<string> assigneeList = [.. 
                 tasks
                     .Where(x => x.STATUS != "完了")
-                    .Select(x => x.ASSIGNEE)
-                    .Distinct()]; 
-            // 1. Whereで、完了タスクではないものに絞る
-            // 2. Selectで、担当者名リストに加工
-            // 3. Distinctで、重複削除
+                    .OrderBy(x => x.ASSIGNEE)
+                    .GroupBy(x => x.ASSIGNEE)
+                    .Select(x => x.Key)];
+            // 1. Whereで、未完了タスク（完了タスクではないもの）に絞る
+            // 2. OrderByで、担当者名順にする
+            // 3. GroupByで、担当者ごとのまとまりに加工
+            // 2. Selectで、上記まとまりをキー（担当者名）のリストに加工
 
             // 集計
             foreach (var assignee in assigneeList)
